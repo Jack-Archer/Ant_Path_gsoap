@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="FileSaver"
+  targetNamespace="urn:FileSaver"
+  xmlns:tns="urn:FileSaver"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="urn:FileSaver"
+  xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:HTTP="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+  xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+  <schema targetNamespace="urn:FileSaver"
+    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns="urn:FileSaver"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="unqualified"
+    attributeFormDefault="unqualified">
+    <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+    <simpleType name="ErrorCode"><!-- ns__ErrorCode -->
+      <restriction base="xsd:QName">
+        <!-- = 0 -->
+        <enumeration value="ns:NO-ERROR"/><!-- ns__NO_ERROR -->
+        <!-- = 1 -->
+        <enumeration value="ns:COULD-NOT-OPEN-FILE"/><!-- ns__COULD_NOT_OPEN_FILE -->
+        <!-- = 2 -->
+        <enumeration value="ns:COULD-NOT-SAVE-FILE"/><!-- ns__COULD_NOT_SAVE_FILE -->
+        <!-- = 3 -->
+        <enumeration value="ns:COULD-NOT-LOAD-FILE"/><!-- ns__COULD_NOT_LOAD_FILE -->
+      </restriction>
+    </simpleType>
+    <complexType name="loadFileResponse"><!-- ns__loadFileResponse -->
+          <sequence>
+            <element name="fileData" type="xsd:base64Binary" minOccurs="1" maxOccurs="1"/><!-- ns__loadFileResponse::fileData -->
+            <element name="errorCode" type="ns:ErrorCode" minOccurs="1" maxOccurs="1"/><!-- ns__loadFileResponse::errorCode -->
+          </sequence>
+    </complexType>
+  </schema>
+
+</types>
+
+<message name="findPathRequest">
+  <part name="x" type="xsd:int"/><!-- ns__findPath::x -->
+  <part name="y" type="xsd:int"/><!-- ns__findPath::y -->
+</message>
+
+<message name="findPathResponse">
+  <part name="result" type="xsd:int"/><!-- ns__findPath::result -->
+</message>
+
+<portType name="FileSaverPortType">
+  <operation name="findPath">
+    <documentation>Service definition of function ns__findPath</documentation>
+    <input message="tns:findPathRequest"/>
+    <output message="tns:findPathResponse"/>
+  </operation>
+</portType>
+
+<binding name="FileSaver" type="tns:FileSaverPortType">
+  <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="findPath">
+    <SOAP:operation style="rpc" soapAction=""/>
+    <input>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:FileSaver"/>
+    </input>
+    <output>
+          <SOAP:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:FileSaver"/>
+    </output>
+  </operation>
+</binding>
+
+<service name="FileSaver">
+  <documentation>gSOAP 2.8.132 generated service definition</documentation>
+  <port name="FileSaver" binding="tns:FileSaver">
+    <SOAP:address location="http://localhost:80"/>
+  </port>
+</service>
+
+</definitions>

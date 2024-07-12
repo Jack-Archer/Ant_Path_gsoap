@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/gs_server.dir/soapC.cpp.o CMakeFiles/gs_server.dir/soapFileSaverService.cpp.o CMakeFiles/gs_server.dir/main.cpp.o CMakeFiles/gs_server.dir/server.cpp.o CMakeFiles/gs_server.dir/check_move.cpp.o CMakeFiles/gs_server.dir/ant_path.cpp.o -o gs_server  /usr/lib/x86_64-linux-gnu/libgsoap++.so 

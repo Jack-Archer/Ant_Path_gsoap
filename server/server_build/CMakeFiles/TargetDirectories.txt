@@ -1,0 +1,3 @@
+/home/jack-archer/VScode/Own/Ant_Path/server/server_build/CMakeFiles/gs_server.dir
+/home/jack-archer/VScode/Own/Ant_Path/server/server_build/CMakeFiles/edit_cache.dir
+/home/jack-archer/VScode/Own/Ant_Path/server/server_build/CMakeFiles/rebuild_cache.dir
